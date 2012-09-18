@@ -1,0 +1,15 @@
+{% extends "p_base.html" %}
+
+{% block title %}- Indice de autores {% endblock %}
+
+{% block contenido %}
+<p><center><h3>Lista de autores disponibles</h3></center></p>
+<br>
+	<table border = "1" width="100%">
+		{% for elemento in autor_datos %} 
+		<tr>
+			<td width="102px"><center><img src="{{elemento.autor_foto}}" width="100px"></center></td><td><center><a href='/autor/{{elemento.id}}'>{{elemento.autor_nombre}}</a></center></td><td><center>{{elemento.autor_nacion}}</center></td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

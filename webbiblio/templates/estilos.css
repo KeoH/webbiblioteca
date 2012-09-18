@@ -1,0 +1,40 @@
+body
+{
+	background: olive;
+	color: white;
+	font-family: Helvetica, Arial;
+	font-size: 16px;
+}
+h1
+{
+	text-align: center;
+	text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+#seccion1
+{
+	background: white;
+	border-radius: 0.5em;
+	margin: 1em auto;
+	padding: 1em 0;
+	width: 95%;
+}
+#seccion1 article
+{
+	background: #1A9DE0;
+	border-radius: 0.5em;
+	display: inline-block;
+	margin: 0 2%;
+	min-height: 350px;
+	padding: 0.5;
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+	transition: all 1s ease-in;
+	-webkit-transition: all 1s linear;
+	width: 45%;
+	vertical-align: top;
+}
+#seccion1 article:hover
+{
+	background: #AAA;
+	transform: rotate(4deg) translateX(10px);
+	-webkit-transform: rotate(4deg);
+}

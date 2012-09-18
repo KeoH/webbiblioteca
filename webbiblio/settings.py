@@ -1,4 +1,6 @@
 # Django settings for webbiblio project.
+import os
+RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -103,9 +105,7 @@ ROOT_URLCONF = 'webbiblio.urls'
 WSGI_APPLICATION = 'webbiblio.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(RUTA_PROYECTO, 'templates')
 )
 
 INSTALLED_APPS = (

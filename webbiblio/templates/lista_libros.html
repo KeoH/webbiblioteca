@@ -1,0 +1,13 @@
+{% extends "p_base.html" %}
+
+{% block title %}- Indice {% endblock %}
+
+{% block contenido %}
+<p><center><h3>Lista de libros disponibles</h3></center></p>
+<br>
+	<ul>
+		{% for elemento in libro_datos %} 
+		<li><a href='/libro/{{elemento.id}}'>{{elemento.libro_titulo}}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
