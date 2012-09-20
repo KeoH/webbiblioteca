@@ -2,3 +2,4 @@ $ cat .gitignore
 *~
 *.geany
 *.pyc
+*.db

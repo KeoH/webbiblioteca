@@ -1,0 +1,23 @@
+{% extends "p_base.html" %}
+
+{% block title %}- Contacto {% endblock %}
+
+{% block contenido %} 
+<p><center><h3>Ponte en contacto</h3></center></p>
+<br>
+{% if errors %}
+	<ul>
+		{% for error in errors %}
+			<li>{{error}}</li>
+		{% endfor %}}
+	</ul>
+{% endif %}
+
+<form action="/contacto/" method="post">
+	<p>Asunto: <input type="text" name="asunto"></p>
+	<p>E-mail (opcional): <input type="text" name="email"></p>
+	<p>Mensaje: <textarea name="mensaje" rows="10" cols="50"></textarea></p>
+	<input type="submit" value="Enviar">
+</form>
+
+ {% endblock %}

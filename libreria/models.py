@@ -65,7 +65,7 @@ class Libro(models.Model):
 	libro_tema = models.ManyToManyField(Tema)
 	libro_fecha_pub = models.CharField(max_length=4)
 	libro_resumen = models.TextField(default="Resumen...")
-	#libro_comentarios = models.ManyToManyField(Comentario)
+	
 	
 	def __unicode__(self):
 		return self.libro_titulo
