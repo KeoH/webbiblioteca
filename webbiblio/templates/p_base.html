@@ -3,12 +3,12 @@
 <head>
 	<title>Biblioteca Manzano Magaña {% block title %} {% endblock %}</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="estilos.css"/>
+	
 </head>
 
 <body>
+		<header><h1>Biblioteca Manzano Magaña</h1></header>
 		{% include "nav.html" %}
-		<header><center><h1>Biblioteca Manzano Magaña</h1></center></header>
 		{% block contenido %} {% endblock %}
 		
 		{% include 'footer.html' %}	

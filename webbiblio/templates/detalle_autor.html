@@ -1,0 +1,21 @@
+{% extends "p_base.html" %}
+
+{% block title %}- {{autor.autor_nombre}} {% endblock %}
+
+{% block contenido %}
+<section>
+	<p><h2>{{autor.autor_nombre}}</h2></p>
+	<br>
+	<img src="{{autor.autor_foto}}" width="300px">
+	<p>Original de {{autor.autor_nacion}}, <img src="{{urlbandera}}" width="20px"></p>
+	<p>Libros en la biblioteca de {{autor.autor_nombre}}: {{numlibros}} libro(s)</p>
+	<ul>
+		{% for libro in libros %}
+				<li><a href="/libro/{{libro.id}}">{{libro.libro_titulo}}</a></li>
+		{% endfor %}
+	</ul>
+</section>
+<a href="/listaautores">Volver</a>
+
+
+{% endblock %}
