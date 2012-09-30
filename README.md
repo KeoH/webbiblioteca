@@ -7,4 +7,4 @@ proyecto casero.
 Autor
 ==
 
-Francisco Manzano Magaña {Mzñ Studio} [www.mznstudio.blogspot.com]
+Francisco Manzano Magaña {http://www.mznstudio.blogspot.com}[MznStudio]
