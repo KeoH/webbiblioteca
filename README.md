@@ -1,10 +1,10 @@
-Web libreria casera
-==
+#Web libreria casera
+
+##Descripción
 
 Web programada en Python y HTML/CSS con Django para un
 proyecto casero.
 
-Autor
-==
+##Autor
 
-Francisco Manzano Magaña {http://www.mznstudio.blogspot.com}[MznStudio]
+Francisco Manzano Magaña - [MznStudio](http://mznstudio.herokuapp.com)
