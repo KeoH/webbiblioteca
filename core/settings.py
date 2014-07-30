@@ -115,8 +115,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    #'django.contrib.admindocs',
-    'libreria',
+    'south',
+    'authors',
+    'books',
+    'comments',
+    'contacts',
+    'editors',
+    'user_profile',
 )
 
 # A sample logging configuration. The only tangible logging

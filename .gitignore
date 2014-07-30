@@ -2,4 +2,4 @@
 *.geany
 *.pyc
 *.db
-
+env/
