@@ -8,6 +8,12 @@ def listalibros(request):
 	ctx = {'libros':datos}
 
 	return render(request, 'books/lista_libros.html',ctx)
+
+def listatemas(request):
+	
+	ctx = {}
+
+	return render(request, 'books/lista_temas.html',ctx)
 	
 def detalle_libro(request, id_libro):
 	dato = Book.objects.get(pk=id_libro)

@@ -3,19 +3,21 @@
 {% block title %}- Indice de autores {% endblock %}
 
 {% block contenido %}
-<p><h3>Lista de autores disponibles</h3></p>
-<p>
-	<nav id="menu">
-		<li><a href="/busca_autor/"> Buscar autor por nombre</a></li>
-		<li><a href="/busca_pais/">Buscar por país</a></li>
-	</nav>
-</p>
+
+	<h3>Autores disponibles</h3>
+
 	<table border = "1" width="100%">
 		{% for autor in autores %} 
 		<tr class="autorenlista">
-			<td width="102px"><figure><img src="{{autor.autor_foto}}" width="100px"></figure></td>
-			<td><a href='/autor/{{autor.id}}'>{{autor.autor_nombre}}</a></td>
-			<td>{{autor.autor_nacion}}</td>
+			<td width="102px">
+				<figure>
+					<img src="{{autor.photo}}" width="100px">
+				</figure>
+			</td>
+			<td>
+				<a href="{% url 'authors:detail' autor.id %}">{{autor.name}}</a>
+			</td>
+			<td>{{autor.nation}}</td>
 		</tr>
 		{% endfor %}
 	</table>

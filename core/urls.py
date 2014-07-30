@@ -7,10 +7,10 @@ urlpatterns = patterns('',
     # url(r'^webbiblio/', include('webbiblio.foo.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$','core.views.home'),
+    url(r'^$','core.views.home', name='home'),
 
-    url(r'^libros/', include('books.urls')),
-    url(r'^autores/', include('authors.urls')),
+    url(r'^libros/', include('books.urls', namespace='books')),
+    url(r'^autores/', include('authors.urls', namespace='authors')),
 
-    url(r'^contacto/$','contacts.views.contacto'), 
+    url(r'^contacto/$','contacts.views.contacto', name='contact'), 
 )

@@ -3,28 +3,31 @@
 {% block title %}- Indice de libros {% endblock %}
 
 {% block contenido %}
-	<p>
-		<h3>Lista de libros disponibles</h3>
-	</p>
-	<p>
-		<nav id="menu">
-			<li><a href="/busca_libro/"> Buscar libro por nombre</a></li>
-			<li><a href="/busca_tema/">Buscar por tema</a></li>
-		</nav>
-	</p>
+
+	<h3>Libros disponibles</h3>
+
 	<table border = "1" width="100%">
 		{% for libro in libros %} 
 		<tr class="autorenlista">
 			<td>
-				<a href='/libro/{{libro.id}}'>
-					{{libro.libro_titulo}}
+				<a href="{% url 'books:detail' libro.id %}">
+					{{libro.title}}
 				</a>
 			</td>
 			<td>
-				{{libro.libro_tema}}
+				{% for autor in libro.authors.all %}
+					<a href="{% url 'authors:detail' autor.id %}">
+						{{autor.name}}
+					</a>
+				{% endfor %}
 			</td>
 			<td>
-				{{libro.libro_editorial}}
+				{% for tema in libro.theme.all %}
+				<span>{{ tema.name }}</span>	
+				{% endfor %}
+			</td>
+			<td>
+				{{libro.editor}}
 			</td>
 		</tr>
 		{% endfor %}

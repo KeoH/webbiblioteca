@@ -1,8 +1,8 @@
 		<nav id="menu">
 			<ul>
-				<li><a href="/listalibros/">Libros</a></li>
-				<li><a href="/listaautores/">Autores</a></li>
-				<li><a href="/temas/">Temas</a></li>
-				<li><a href="/contacto/">Contacto</a></li>
+				<li><a href="{% url 'books:home' %}">Libros</a></li>
+				<li><a href="{% url 'authors:home' %}">Autores</a></li>
+				<li><a href="{% url 'books:themes' %}">Temas</a></li>
+				<li><a href="{% url 'contact' %}">Contacto</a></li>
 			</ul>
 		</nav>
