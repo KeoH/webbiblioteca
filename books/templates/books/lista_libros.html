@@ -1,0 +1,35 @@
+{% extends "p_base.html" %}
+
+{% block title %}- Indice de libros {% endblock %}
+
+{% block contenido %}
+
+	<h3>Libros disponibles</h3>
+
+	<table border = "1" width="100%">
+		{% for libro in libros %} 
+		<tr class="autorenlista">
+			<td>
+				<a href="{% url 'books:detail' libro.id %}">
+					{{libro.title}}
+				</a>
+			</td>
+			<td>
+				{% for autor in libro.authors.all %}
+					<a href="{% url 'authors:detail' autor.id %}">
+						{{autor.name}}
+					</a>
+				{% endfor %}
+			</td>
+			<td>
+				{% for tema in libro.theme.all %}
+				<span>{{ tema.name }}</span>	
+				{% endfor %}
+			</td>
+			<td>
+				{{libro.editor}}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

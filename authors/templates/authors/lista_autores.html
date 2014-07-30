@@ -1,0 +1,24 @@
+{% extends "p_base.html" %}
+
+{% block title %}- Indice de autores {% endblock %}
+
+{% block contenido %}
+
+	<h3>Autores disponibles</h3>
+
+	<table border = "1" width="100%">
+		{% for autor in autores %} 
+		<tr class="autorenlista">
+			<td width="102px">
+				<figure>
+					<img src="{{autor.photo}}" width="100px">
+				</figure>
+			</td>
+			<td>
+				<a href="{% url 'authors:detail' autor.id %}">{{autor.name}}</a>
+			</td>
+			<td>{{autor.nation}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

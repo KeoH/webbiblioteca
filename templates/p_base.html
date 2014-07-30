@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Biblioteca Manzano Magaña {% block title %} {% endblock %}</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+
+<body>
+	<div id = "container">
+		<a href="/">
+			<header id = "titular">
+				<h1>Biblioteca Manzano Magaña</h1>
+			</header>
+		</a>
+		
+
+		{% include "nav.html" %}
+		{% block contenido %} {% endblock %}
+		
+		{% include 'footer.html' %}	
+	</div>
+</body>
+</html>
+

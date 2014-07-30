@@ -1,0 +1,30 @@
+{% extends "p_base.html" %}
+
+{% block title %}- {{libro.title}} {% endblock %}
+
+{% block contenido %}
+<section class="texto">
+	<p>
+		<h2>{{libro.title}}</h2>
+	</p>
+	<p>Autor(es): 
+		<ul>
+			{% for x in autores %}
+				<li><a href="{% url 'authors:detail' x.id %}">{{x}}</a></li>
+			{% endfor %}
+		</ul>
+	</p>
+	<p>Editorial: {{libro.editor}}</p>
+	<p>Publicado en: {{libro.pub_year}}</p>
+	<p>Numero de registro: {{libro.libro_num_registro}}</p>
+	<p>Tema: <ul>
+				{% for x in temas %}
+				<li>{{x}}</li>
+				{% endfor %}
+			</ul></p>
+	<p>Resumen: {{libro.libro_resumen}}</p>
+
+
+</section>
+<a href="{% url 'books:home' %}">Volver</a>
+{% endblock %}
