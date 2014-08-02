@@ -3,19 +3,23 @@
 {% block title %}- {{autor.autor_nombre}} {% endblock %}
 
 {% block contenido %}
-<section class="texto">
-	<p><h2>{{autor.autor_nombre}}</h2></p>
-	<br>
-	<figure><img src="{{autor.autor_foto}}" width="300px"></figure>
-	<p>Original de {{autor.autor_nacion}}, <img src="{{urlbandera}}" width="20px"></p>
-	<p>Libros en la biblioteca de {{autor.autor_nombre}}: {{numlibros}} libro(s)</p>
+<section>
+	<script>
+		$('#m2').addClass("active");
+	</script>
+	<h2>{{autor.name}}</h2>
+	<figure>
+		<img src="{{autor.get_photo}}" width="300px">
+	</figure>
+	<p>Original de {{autor.nation}}, <img src="{{autor.nation.get_flag}}" width="20px"></p>
+	<p>Libros en la biblioteca de {{autor.name}}: {{numlibros}} libro(s)</p>
 	<ul>
 		{% for libro in libros %}
-				<li><a href="/libro/{{libro.id}}">{{libro.libro_titulo}}</a></li>
+				<li><a href="{% url 'books:detail' libro.id %}">{{libro.title}}</a></li>
 		{% endfor %}
 	</ul>
 </section>
-<a href="/listaautores">Volver</a>
+<a href="{% url 'authors:home' %}" class="btn btn-primary">Volver</a>
 
 
 {% endblock %}

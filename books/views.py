@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Book
+from .models import Book, Theme
 
 def listalibros(request):
 	datos = Book.objects.all()
@@ -11,7 +11,9 @@ def listalibros(request):
 
 def listatemas(request):
 	
-	ctx = {}
+	temas = Theme.objects.all()
+
+	ctx = {'temas':temas}
 
 	return render(request, 'books/lista_temas.html',ctx)
 	

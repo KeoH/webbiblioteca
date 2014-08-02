@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from .models import Author
+from .models import Author, Nation
+from books.models import Book
 
 def listaautores(request):
 	datos = Author.objects.all()
@@ -8,8 +9,8 @@ def listaautores(request):
 
 def detalle_autor(request, id_autor):
 	dato = Author.objects.get(pk=id_autor)
-	datonacion = Nation.objects.filter(name = dato.nation)
-	bandera = dato.flag
+	datonacion = dato.nation
+	bandera = datonacion.flag
 	datolibro = Book.objects.filter(authors=id_autor)
 	numlibros = datolibro.count()
 

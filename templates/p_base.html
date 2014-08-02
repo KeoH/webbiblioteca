@@ -2,25 +2,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Biblioteca Manzano Magaña {% block title %} {% endblock %}</title>
 	<meta charset="utf-8" />
+	<meta name="description" content="Biblioteca casera, de acceso privado :3" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<div id = "container">
-		<a href="/">
-			<header id = "titular">
-				<h1>Biblioteca Manzano Magaña</h1>
-			</header>
-		</a>
-		
-
-		{% include "nav.html" %}
+	{% include "nav.html" %}
+	<div class="container">
 		{% block contenido %} {% endblock %}
 		
-		{% include 'footer.html' %}	
+		
 	</div>
+	{% include 'footer.html' %}	
 </body>
 </html>
 

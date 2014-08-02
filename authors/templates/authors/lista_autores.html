@@ -3,22 +3,38 @@
 {% block title %}- Indice de autores {% endblock %}
 
 {% block contenido %}
-
+	<script>
+		$('#m2').addClass("active");
+	</script>
 	<h3>Autores disponibles</h3>
 
-	<table border = "1" width="100%">
-		{% for autor in autores %} 
-		<tr class="autorenlista">
-			<td width="102px">
-				<figure>
-					<img src="{{autor.photo}}" width="100px">
-				</figure>
-			</td>
-			<td>
-				<a href="{% url 'authors:detail' autor.id %}">{{autor.name}}</a>
-			</td>
-			<td>{{autor.nation}}</td>
-		</tr>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Foto</th>
+				<th>Nombre del autor</th>
+				<th>Nacionalidad</th>
+				<th>Sexo</th>
+			</tr>
+		</thead>
+		<tbody class="table-striped">
+			{% for autor in autores %} 
+				<tr>
+					<td>{{autor.id}}</td>
+					<td>
+						<figure>
+							<img src="{{autor.get_photo}}" height="100px">
+						</figure>
+					</td>
+					<td>
+						<a href="{% url 'authors:detail' autor.id %}">{{autor.name}}</a>
+					</td>
+					<td>{{autor.nation}}</td>
+					<td><img src="{{autor.get_sexo_image}}" height="50px" alt="{{autor.get_sexo_name}}"></td>
+			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
+
 {% endblock %}

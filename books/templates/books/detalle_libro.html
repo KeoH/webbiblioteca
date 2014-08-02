@@ -3,28 +3,54 @@
 {% block title %}- {{libro.title}} {% endblock %}
 
 {% block contenido %}
-<section class="texto">
-	<p>
-		<h2>{{libro.title}}</h2>
-	</p>
-	<p>Autor(es): 
-		<ul>
-			{% for x in autores %}
-				<li><a href="{% url 'authors:detail' x.id %}">{{x}}</a></li>
-			{% endfor %}
-		</ul>
-	</p>
-	<p>Editorial: {{libro.editor}}</p>
-	<p>Publicado en: {{libro.pub_year}}</p>
-	<p>Numero de registro: {{libro.libro_num_registro}}</p>
-	<p>Tema: <ul>
-				{% for x in temas %}
-				<li>{{x}}</li>
-				{% endfor %}
-			</ul></p>
-	<p>Resumen: {{libro.libro_resumen}}</p>
+<section class="detalle-libro">
+	<script>
+		$('#m1').addClass("active");
+	</script>
 
-
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>{{libro.title}}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row">
+				<p>
+					<span class="titseccion">Autor(es):</span> 
+					<ul>
+						{% for x in autores %}
+							<li><a href="{% url 'authors:detail' x.id %}">{{x}}</a></li>
+						{% endfor %}
+					</ul>
+				</p>
+				<p>
+					<span class="titseccion">Editorial:</span> {{libro.editor}}</p>
+				<p>
+					<span class="titseccion">Publicado en:</span> {{libro.pub_year}}</p>
+				<p>
+					<span class="titseccion">Numero de registro:</span> {{libro.registro}}</p>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="row">
+				<p>
+					<span class="titseccion">Tema(s):</span> 
+					<ul>
+						{% for x in temas %}
+							<li>{{x}}</li>
+						{% endfor %}
+					</ul>
+				</p>
+				<p>
+					<span class="titseccion">Resumen:</span> 
+					<p>
+						{{libro.resume}}
+					</p>
+				</p>
+			</div>
+		</div>
+	</div>
 </section>
-<a href="{% url 'books:home' %}">Volver</a>
+<a href="{% url 'books:home' %}" class="btn btn-primary">Volver</a>
 {% endblock %}

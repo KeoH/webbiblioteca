@@ -3,33 +3,51 @@
 {% block title %}- Indice de libros {% endblock %}
 
 {% block contenido %}
-
+	<script>
+		$('#m1').addClass("active");
+	</script>
 	<h3>Libros disponibles</h3>
 
-	<table border = "1" width="100%">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Titulo</th>
+				<th>Autor(es)</th>
+				<th>Numero Registro</th>
+				<th>Año de publicación</th>
+				<th>Temas</th>
+				<th>Editorial</th>
+			</tr>
+		</thead>
+		<tbody class="table-striped">
 		{% for libro in libros %} 
-		<tr class="autorenlista">
-			<td>
-				<a href="{% url 'books:detail' libro.id %}">
-					{{libro.title}}
-				</a>
-			</td>
-			<td>
-				{% for autor in libro.authors.all %}
-					<a href="{% url 'authors:detail' autor.id %}">
-						{{autor.name}}
+			<tr>
+				<td>{{libro.id}}</td>
+				<td>
+					<a href="{% url 'books:detail' libro.id %}">
+						{{libro.title}}
 					</a>
-				{% endfor %}
-			</td>
-			<td>
-				{% for tema in libro.theme.all %}
-				<span>{{ tema.name }}</span>	
-				{% endfor %}
-			</td>
-			<td>
-				{{libro.editor}}
-			</td>
-		</tr>
+				</td>
+				<td>
+					{% for autor in libro.authors.all %}
+						<a href="{% url 'authors:detail' autor.id %}">
+							{{autor.name}}
+						</a>
+					{% endfor %}
+				</td>
+				<td style="text-align: center;">{{ libro.registro }}</td>
+				<td style="text-align: center;">{{libro.pub_year}}</td>
+				<td>
+					{% for tema in libro.theme.all %}
+					<span>{{ tema.name }}</span>	
+					{% endfor %}
+				</td>
+				<td>
+					{{libro.editor}}
+				</td>
+			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 {% endblock %}

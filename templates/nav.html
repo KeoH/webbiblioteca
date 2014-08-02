@@ -1,8 +1,27 @@
-		<nav id="menu">
-			<ul>
-				<li><a href="{% url 'books:home' %}">Libros</a></li>
-				<li><a href="{% url 'authors:home' %}">Autores</a></li>
-				<li><a href="{% url 'books:themes' %}">Temas</a></li>
-				<li><a href="{% url 'contact' %}">Contacto</a></li>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="{% url 'home' %}" class="navbar-brand">Biblioteca Manzano Magaña</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li id="m1"><a href="{% url 'books:home' %}">Libros</a></li>
+			<li id="m2"><a href="{% url 'authors:home' %}">Autores</a></li>
+			<li id="m3"><a href="{% url 'books:themes' %}">Temas</a></li>
+			<li id="m4"><a href="{% url 'contact' %}">Contacto</a></li>
+		</ul>
+		{% if user.is_authenticated %}		
+			<ul class="nav navbar-nav pull-right">
+				<li>
+					<a href="#" class="user">
+						<figure class="pull-left">
+							<img src="{{ user.userprofile.get_avatar }}" alt="avatar" width="30px" height="30px">
+						</figure>
+						<span class="pull-right">@{{user.username}}</span>
+					</a>
+				</li>
+				<li><a href="{% url 'users:logout' %}">Salir</a></li>
 			</ul>
-		</nav>
+		{% endif %}
+
+	</div>
+</nav>
