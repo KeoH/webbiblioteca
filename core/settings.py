@@ -118,7 +118,7 @@ INSTALLED_APPS = (
 if os.environ['ENTORNO'] == "PRODUCCION":
     import dj_database_url
     print "En produccion"
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = ['*']
 
     DB_HOST = os.environ["DB_HOST"]
