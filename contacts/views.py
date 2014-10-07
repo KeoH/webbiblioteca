@@ -2,8 +2,12 @@ from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
-def contacto(request):	
+#@login_required(login_url=reverse('users:login'))
+def contacto(request):
+
 	errors=[]
 	if request.method == 'POST':
 		if not request.POST.get('asunto', ''):
@@ -19,6 +23,6 @@ def contacto(request):
 				request.POST.get('email', 'noemail@example.com'),
 				['keoh77@gmail.com'],
 			)
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect(reverse('home'))
 
 	return render(request, 'contacto.html',{'errors':errors})

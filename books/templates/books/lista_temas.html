@@ -3,13 +3,11 @@
 {% block title %}- Indice de temas {% endblock %}
 
 {% block contenido %}
-	<script>
-		$('#m3').addClass("active");
-	</script>
+
 	<h3>Temas disponibles</h3>
 	<div class="row">
 		{% for tema in temas %}
-			<div class="col-sm-4" style="text-align: center;">
+			<div class="Book-temaLink">
 				<a href="#" class="btn btn-lg btn-default">{{tema.name}}</a>
 			</div>
 		{% endfor %}

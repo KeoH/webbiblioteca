@@ -7,19 +7,20 @@
 	<meta charset="utf-8" />
 	<meta name="description" content="Biblioteca casera, de acceso privado :3" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link href='http://fonts.googleapis.com/css?family=Signika:400,300,700' rel='stylesheet' type='text/css'>
+	<!-- <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	-->
 	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 </head>
 
 <body>
 	{% include "nav.html" %}
-	<div class="container">
+	<div class="Container">
 		{% block contenido %} {% endblock %}
-		
-		
 	</div>
 	{% include 'footer.html' %}	
 </body>

@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^users/', include('user_profile.urls', namespace='users')),
 
     url(r'^contacto/$','contacts.views.contacto', name='contact'), 
+    
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

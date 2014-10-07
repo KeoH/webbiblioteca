@@ -3,36 +3,36 @@
 {% block title %}- Contacto {% endblock %}
 
 {% block contenido %} 
-	<script>
-		$('#m4').addClass("active");
-	</script>
-	<h3>Ponte en contacto</h3>
+
 
 {% if errors %}
-	<ul>
+	<ul class="Form-errorList">
 		{% for error in errors %}
-			<li>{{error}}</li>
+			<li class="Form-errorItem">{{error}}</li>
 		{% endfor %}}
 	</ul>
 {% endif %}
-<div class="row">
-	<div class="col-sm-8 col-sm-offset-2">
-		<form action="" method="post" role="form">
-			<div class="form-group">
-				<label for="asunto">Asunto</label>
-				<input type="text" name="asunto" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="email">Tu email</label>
-				<input type="text" name="email" class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="mensaje">Mensaje</label>
-				<textarea name="mensaje" rows="7" style="resize: none;" class="form-control"></textarea>
-			</div>
-			<button type="submit" class="btn btn-primary btn-default btn-lg ">Enviar</button>
-		</form>
-	</div>
-</div>
+
+<form action="" method="post" class="Form">
+	<h1>Ponte en contacto</h1>
+	<label for="asunto" class="Form-label">
+		<span>Asunto:</span>
+		<input type="text" name="asunto" class="Form-input">
+	</label>
+
+	<label for="email" class="Form-label">
+		<span>Tu email:</span>
+		<input type="email" name="email" class="Form-input">
+	</label>
+	
+	<label for="mensaje" class="Form-label">
+		<span>Mensaje:</span>
+		<textarea name="mensaje" class="Form-textarea"></textarea>
+	</label>
+	<label class="Form-label">
+		<span></span>
+		<button type="submit" class="Form-submit">Enviar</button>
+	</label>
+</form>
 
  {% endblock %}

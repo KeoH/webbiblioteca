@@ -3,16 +3,14 @@
 {% block title %}- Indice de autores {% endblock %}
 
 {% block contenido %}
-	<script>
-		$('#m2').addClass("active");
-	</script>
+
 	<h3>Autores disponibles</h3>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>Foto</th>
+				<th class="noMovil">#</th>
+				<th class="noMovil">Foto</th>
 				<th>Nombre del autor</th>
 				<th>Nacionalidad</th>
 				<th>Sexo</th>
@@ -21,8 +19,8 @@
 		<tbody class="table-striped">
 			{% for autor in autores %} 
 				<tr>
-					<td>{{autor.id}}</td>
-					<td>
+					<td class="noMovil">{{autor.id}}</td>
+					<td class="noMovil">
 						<figure>
 							<img src="{{autor.get_photo}}" height="100px">
 						</figure>

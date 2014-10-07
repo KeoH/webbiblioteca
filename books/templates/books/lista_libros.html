@@ -3,51 +3,52 @@
 {% block title %}- Indice de libros {% endblock %}
 
 {% block contenido %}
-	<script>
-		$('#m1').addClass("active");
-	</script>
-	<h3>Libros disponibles</h3>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Titulo</th>
-				<th>Autor(es)</th>
-				<th>Numero Registro</th>
-				<th>Año de publicación</th>
-				<th>Temas</th>
-				<th>Editorial</th>
-			</tr>
-		</thead>
-		<tbody class="table-striped">
+	<form action="{% url 'books:search' %}" class="SearchForm" method="post">
+		{% csrf_token %}
+		<input type="text" placeholder="Intruduce nombre de libro o autor">
+		<input type="submit" value="Enviar">
+	</form>
+
+	<h3>Libros disponibles</h3>
+	<section class="Book-List">
 		{% for libro in libros %} 
-			<tr>
-				<td>{{libro.id}}</td>
-				<td>
-					<a href="{% url 'books:detail' libro.id %}">
+		<article class="Book">
+			<header class="Book-header">
+				<h1 class="Book-title">
+					<a href="{% url 'books:detail' libro.id %}" class="Book-titleLink">
 						{{libro.title}}
+						<small>({{libro.pub_year}})</small>
 					</a>
-				</td>
-				<td>
+				</h1>
+				<h3 class="Book-author">
 					{% for autor in libro.authors.all %}
-						<a href="{% url 'authors:detail' autor.id %}">
+						<a href="{% url 'authors:detail' autor.id %}" class="Book-authorLink">
 							{{autor.name}}
 						</a>
 					{% endfor %}
-				</td>
-				<td style="text-align: center;">{{ libro.registro }}</td>
-				<td style="text-align: center;">{{libro.pub_year}}</td>
-				<td>
-					{% for tema in libro.theme.all %}
-					<span>{{ tema.name }}</span>	
-					{% endfor %}
-				</td>
-				<td>
-					{{libro.editor}}
-				</td>
-			</tr>
+				</h3>
+			</header>
+			<div class="Book-resume">
+				<h2>Descripción:</h2>
+				<p>{{libro.resume}}</p>
+			</div>
+			<footer class="Book-footer">
+				<div class="Book-registro">
+					Num. Registro: <strong>{{libro.registro}}</strong>
+				</div>
+				<div class="Book-temas">
+					<ul class="Book-temasList">
+						{% for tema in libro.theme.all %}
+						<li class="Book-temasItem">
+							<a href="" class="Book-temaLink">{{ tema.name }}</a>	
+						</li>
+						{% endfor %}
+						
+					</ul>
+				</div>
+			</footer>
+		</article>
 		{% endfor %}
-		</tbody>
-	</table>
+	</section>
 {% endblock %}
