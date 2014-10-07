@@ -1,10 +1,6 @@
-<div class="login-form hidden" id="signin-form">
-	{% if user.is_authenticated %}
-	<p>Usuario logeado</p>
-	<p>{{ user.username }}</p>
-	{% else %}
+<div id="signin-form">
 	<p>
-		Sign In
+		Iniciar sesión
 	</p>
 	<form action="" method="post">
 		{% csrf_token %}
@@ -19,7 +15,7 @@
 			{{ form_signin.password }}
 		</div>
 
-		<input class="form-button" type="submit" value="Sign in">
+		<input class="form-button" type="submit" value="Entrar">
 	</form>
-	{% endif %}
+
 </div>

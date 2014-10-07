@@ -28,5 +28,5 @@ class Book(models.Model):
 		return self.title
 		
 	class Meta:
-		ordering = ['title']
+		ordering = ['id']
 		verbose_name=u'Libro'

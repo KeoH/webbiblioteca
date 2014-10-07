@@ -3,21 +3,36 @@
 {% block title %}- Contacto {% endblock %}
 
 {% block contenido %} 
-<p><h3>Ponte en contacto</h3></p>
-<br>
+
+
 {% if errors %}
-	<ul>
+	<ul class="Form-errorList">
 		{% for error in errors %}
-			<li>{{error}}</li>
+			<li class="Form-errorItem">{{error}}</li>
 		{% endfor %}}
 	</ul>
 {% endif %}
 
-<form action="/contacto/" method="post">
-	<p>Asunto: <input type="text" name="asunto"></p>
-	<p>E-mail (opcional): <input type="text" name="email"></p>
-	<p>Mensaje: <textarea name="mensaje" rows="10" cols="50"></textarea></p>
-	<input type="submit" value="Enviar">
+<form action="" method="post" class="Form">
+	<h1>Ponte en contacto</h1>
+	<label for="asunto" class="Form-label">
+		<span>Asunto:</span>
+		<input type="text" name="asunto" class="Form-input">
+	</label>
+
+	<label for="email" class="Form-label">
+		<span>Tu email:</span>
+		<input type="email" name="email" class="Form-input">
+	</label>
+	
+	<label for="mensaje" class="Form-label">
+		<span>Mensaje:</span>
+		<textarea name="mensaje" class="Form-textarea"></textarea>
+	</label>
+	<label class="Form-label">
+		<span></span>
+		<button type="submit" class="Form-submit">Enviar</button>
+	</label>
 </form>
 
  {% endblock %}

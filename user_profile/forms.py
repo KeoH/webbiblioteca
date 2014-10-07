@@ -7,22 +7,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate
 
-class EmailUserCreationForm(UserCreationForm):
-
-	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder':_('Username')}))
-	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'input', 'placeholder':_('Email')}))
-	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Password')}))
-	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Repeat password')}))
-
-	class Meta:
-		model = User
-		fields = ('username', 'email')
-
-
 class UserLoginForm(forms.Form):
 
-	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder':_('Username')}))
-	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Password')}))
+	username = forms.CharField(widget=forms.TextInput())
+	password = forms.CharField(widget=forms.PasswordInput())
 
 	def __init__(self, *args, **kwargs):
 		self.user_cache = None

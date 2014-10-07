@@ -5,6 +5,12 @@
 {% block contenido %}
 
 	<h3>Temas disponibles</h3>
-
+	<div class="row">
+		{% for tema in temas %}
+			<div class="Book-temaLink">
+				<a href="#" class="btn btn-lg btn-default">{{tema.name}}</a>
+			</div>
+		{% endfor %}
+	</div>
 
 {% endblock %}

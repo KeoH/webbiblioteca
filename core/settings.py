@@ -1,9 +1,7 @@
 # Django settings for webbiblio project.
 import os
+import socket
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
      ('Francisco Manzano', 'keoh77@gmail.com'),
@@ -11,16 +9,30 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'baselibreria.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+if os.name != "nt":
+    import fcntl
+    import struct
+    def get_interface_ip(ifname):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        return socket.inet_ntoa(fcntl.ioctl(
+                s.fileno(),
+                0x8915,  # SIOCGIFADDR
+                struct.pack('256s', ifname[:15])
+            )[20:24])
+
+def get_lan_ip():
+    ip = socket.gethostbyname(socket.gethostname())
+    if ip.startswith("127.") and os.name != "nt":
+        interfaces = ["eth0","eth1","eth2","wlan0","wlan1","wifi0","ath0","ath1","ppp0"]
+        for ifname in interfaces:
+            try:
+                ip = get_interface_ip(ifname)
+                break;
+            except IOError:
+                pass
+    return ip
+
+MY_URL = get_lan_ip()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -45,24 +57,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
-
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -75,9 +69,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'qwn-b8a+$fmy4gi=nd69=$c^s++zk#*7c@mf#5+r!&amp;48*pp#5%'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -124,6 +115,49 @@ INSTALLED_APPS = (
     'user_profile',
 )
 
+if os.environ['ENTORNO'] == "PRODUCCION":
+    import dj_database_url
+    print "En produccion"
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+
+    DB_HOST = os.environ["DB_HOST"]
+    DB_NAME = os.environ["DB_NAME"]
+    DB_PASS = os.environ["DB_PASS"]
+    DB_USER = os.environ["DB_USER"]
+    SECRET_KEY = os.environ["SECRET_KEY"]
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    S3_URL = 'http://'+ AWS_STORAGE_BUCKET_NAME +'.s3.amazonaws.com/'
+    MEDIA_URL = S3_URL + 'media/'
+    
+    DATABASES = {
+      'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DB_NAME,
+        'HOST': DB_HOST,
+        'PORT': 5432,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS
+      }
+    }
+
+elif os.environ['ENTORNO'] == "DESARROLLO":
+    print "En desarrollo"
+    import secrets
+    DEBUG = True
+    STATIC_ROOT = ''
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    DATABASES = secrets.DEV_DATABASES
+    SECRET_KEY = secrets.SECRET_KEY
+
+TEMPLATE_DEBUG = DEBUG
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

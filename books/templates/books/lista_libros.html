@@ -4,32 +4,51 @@
 
 {% block contenido %}
 
-	<h3>Libros disponibles</h3>
+	<form action="{% url 'books:search' %}" class="SearchForm" method="post">
+		{% csrf_token %}
+		<input type="text" placeholder="Intruduce nombre de libro o autor">
+		<input type="submit" value="Enviar">
+	</form>
 
-	<table border = "1" width="100%">
+	<h3>Libros disponibles</h3>
+	<section class="Book-List">
 		{% for libro in libros %} 
-		<tr class="autorenlista">
-			<td>
-				<a href="{% url 'books:detail' libro.id %}">
-					{{libro.title}}
-				</a>
-			</td>
-			<td>
-				{% for autor in libro.authors.all %}
-					<a href="{% url 'authors:detail' autor.id %}">
-						{{autor.name}}
+		<article class="Book">
+			<header class="Book-header">
+				<h1 class="Book-title">
+					<a href="{% url 'books:detail' libro.id %}" class="Book-titleLink">
+						{{libro.title}}
+						<small>({{libro.pub_year}})</small>
 					</a>
-				{% endfor %}
-			</td>
-			<td>
-				{% for tema in libro.theme.all %}
-				<span>{{ tema.name }}</span>	
-				{% endfor %}
-			</td>
-			<td>
-				{{libro.editor}}
-			</td>
-		</tr>
+				</h1>
+				<h3 class="Book-author">
+					{% for autor in libro.authors.all %}
+						<a href="{% url 'authors:detail' autor.id %}" class="Book-authorLink">
+							{{autor.name}}
+						</a>
+					{% endfor %}
+				</h3>
+			</header>
+			<div class="Book-resume">
+				<h2>Descripción:</h2>
+				<p>{{libro.resume}}</p>
+			</div>
+			<footer class="Book-footer">
+				<div class="Book-registro">
+					Num. Registro: <strong>{{libro.registro}}</strong>
+				</div>
+				<div class="Book-temas">
+					<ul class="Book-temasList">
+						{% for tema in libro.theme.all %}
+						<li class="Book-temasItem">
+							<a href="" class="Book-temaLink">{{ tema.name }}</a>	
+						</li>
+						{% endfor %}
+						
+					</ul>
+				</div>
+			</footer>
+		</article>
 		{% endfor %}
-	</table>
+	</section>
 {% endblock %}

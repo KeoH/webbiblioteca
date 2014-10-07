@@ -3,3 +3,6 @@
 *.pyc
 *.db
 env/
+media/
+pasaautores.py
+core/secrets.py

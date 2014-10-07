@@ -1,8 +1,32 @@
-		<nav id="menu">
-			<ul>
-				<li><a href="{% url 'books:home' %}">Libros</a></li>
-				<li><a href="{% url 'authors:home' %}">Autores</a></li>
-				<li><a href="{% url 'books:themes' %}">Temas</a></li>
-				<li><a href="{% url 'contact' %}">Contacto</a></li>
-			</ul>
-		</nav>
+<header class="Header">
+	<h1 class="Header-title">Biblioteca Manzano Magaña</h1>
+	{% if user.is_authenticated %}
+	<nav class="Header-nav">
+		<ul class="Header-navList">
+			<li class="Header-navItem">
+				<a href="{% url 'books:home' %}" class="Header-navLink">Libros</a>
+			</li>
+			<li class="Header-navItem">
+				<a href="{% url 'authors:home' %}" class="Header-navLink">Autores</a>
+			</li>
+			<li class="Header-navItem">
+				<a href="{% url 'books:themes' %}" class="Header-navLink">Temas</a>
+			</li>
+			<li class="Header-navItem">
+				<a href="{% url 'contact' %}" class="Header-navLink">Contacto</a>
+			</li>
+			<li class="Header-navItem">
+				<a href="{% url 'users:logout' %}" class="Header-navLink">Salir</a>
+			</li>
+			<li class="Header-navItem">
+				<a href="#" class="Header-navLink">
+			<figure class="Header-userImageContainer noMovil">
+				<img src="{{ user.userprofile.get_avatar }}" alt="avatar" class="Header-userImage">
+			</figure>
+			<span class="Header-userName">@{{user.username}}</span>
+		</a>
+			</li>
+		</ul>
+	{% endif %}
+	</nav>
+</header>
