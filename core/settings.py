@@ -9,6 +9,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+if socket.gethostname() == 'UTower':
+    IN_PRODUCCTION = False
+else:
+    IN_PRODUCCTION = True
+
 if os.name != "nt":
     import fcntl
     import struct
@@ -57,12 +62,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -70,14 +69,29 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
+        'APP_DIRS': False,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': (
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ),
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -94,9 +108,6 @@ ROOT_URLCONF = 'core.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'core.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates')
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -106,16 +117,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'south',
-    'authors',
-    'books',
-    'comments',
-    'contacts',
-    'editors',
-    'user_profile',
+
+    'apps.kusers',
+
+    'apps.authors',
+    'apps.books',
+    'apps.comments',
+    'apps.contacts',
+    'apps.editors',
+
 )
 
-if os.environ['ENTORNO'] == "PRODUCCION":
+if IN_PRODUCCTION:
     import dj_database_url
     print "En produccion"
     DEBUG = False
@@ -134,7 +147,7 @@ if os.environ['ENTORNO'] == "PRODUCCION":
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     S3_URL = 'http://'+ AWS_STORAGE_BUCKET_NAME +'.s3.amazonaws.com/'
     MEDIA_URL = S3_URL + 'media/'
-    
+
     DATABASES = {
       'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -146,16 +159,25 @@ if os.environ['ENTORNO'] == "PRODUCCION":
       }
     }
 
-elif os.environ['ENTORNO'] == "DESARROLLO":
+else:
     print "En desarrollo"
-    import secrets
     DEBUG = True
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'baselibreria.db'),
+        }
+    }
+    # Additional locations of static files
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
     STATIC_ROOT = ''
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    DATABASES = secrets.DEV_DATABASES
-    SECRET_KEY = secrets.SECRET_KEY
+    SECRET_KEY = 'kahshjkaskdhaksjdhakshkaaajsakajsbbdamsbnd98as9a'
 
 TEMPLATE_DEBUG = DEBUG
 # A sample logging configuration. The only tangible logging

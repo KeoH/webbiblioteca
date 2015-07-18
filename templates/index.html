@@ -1,13 +1,13 @@
-{% extends "p_base.html" %}
+{% extends "base.html" %}
 
 {% block title %}- Indice {% endblock %}
 
-{% block contenido %}
-
-	<p class="Index-p">La biblioteca de la casa en una bonita y eficiente base de datos multiplataforma sin tener que usar software privativo ni pirata :p. Esta gestionada por SQLite3, en Django y programado en Python. Todo bonito.</p>
-	{% if not user.is_authenticated %}
+{% block content %}
+	{% include "nav.html" %}
 	<p class="Index-p">
-		<a href="{% url 'users:login' %}" class = "Index-loginButton">Login</a>
+		La biblioteca de la casa en una bonita y eficiente base de datos multiplataforma
+		sin tener que usar software privativo ni pirata :p. Esta gestionada por SQLite3,
+		en Django y programado en Python. Todo bonito.
 	</p>
-	{% endif %}
+
 {% endblock %}

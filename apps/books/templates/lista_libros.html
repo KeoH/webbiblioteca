@@ -1,10 +1,10 @@
-{% extends "p_base.html" %}
+{% extends "base.html" %}
 
 {% block title %}- Indice de libros {% endblock %}
 
-{% block contenido %}
+{% block content %}
 
-	<form action="{% url 'books:search' %}" class="SearchForm" method="post">
+	<form action="{% url 'books:searchbook' %}" class="SearchForm" method="post">
 		{% csrf_token %}
 		<input type="text" placeholder="Intruduce nombre de libro o autor">
 		<input type="submit" value="Enviar">
@@ -12,7 +12,7 @@
 
 	<h3>Libros disponibles</h3>
 	<section class="Book-List">
-		{% for libro in libros %} 
+		{% for libro in libros %}
 		<article class="Book">
 			<header class="Book-header">
 				<h1 class="Book-title">
@@ -23,7 +23,7 @@
 				</h1>
 				<h3 class="Book-author">
 					{% for autor in libro.authors.all %}
-						<a href="{% url 'authors:detail' autor.id %}" class="Book-authorLink">
+						<a href="#" class="Book-authorLink">
 							{{autor.name}}
 						</a>
 					{% endfor %}
@@ -41,10 +41,10 @@
 					<ul class="Book-temasList">
 						{% for tema in libro.theme.all %}
 						<li class="Book-temasItem">
-							<a href="" class="Book-temaLink">{{ tema.name }}</a>	
+							<a href="" class="Book-temaLink">{{ tema.name }}</a>
 						</li>
 						{% endfor %}
-						
+
 					</ul>
 				</div>
 			</footer>

@@ -18,11 +18,12 @@
 </head>
 
 <body>
-	{% include "nav.html" %}
+	<header class="Header">
+		<h1 class="Header-title">Biblioteca Manzano Magaña</h1>
+	</header>
 	<div class="Container">
-		{% block contenido %} {% endblock %}
+		{% block content %} {% endblock %}
 	</div>
-	{% include 'footer.html' %}	
+	{% include 'footer.html' %}
 </body>
 </html>
-

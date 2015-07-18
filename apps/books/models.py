@@ -1,7 +1,7 @@
 from django.db import models
 
-from authors.models import Author
-from editors.models import Editor
+from apps.authors.models import Author
+from apps.editors.models import Editor
 
 
 class Theme(models.Model):
@@ -9,7 +9,7 @@ class Theme(models.Model):
 
 	def __unicode__(self):
 		return self.name
-		
+
 	class Meta:
 		ordering = ['name']
 		verbose_name=u'Tema'
@@ -23,10 +23,10 @@ class Book(models.Model):
 	theme = models.ManyToManyField(Theme)
 	pub_year = models.CharField(max_length=4, default="2014")
 	resume = models.TextField(default="Resumen...")
-	
+
 	def __unicode__(self):
 		return self.title
-		
+
 	class Meta:
 		ordering = ['id']
 		verbose_name=u'Libro'

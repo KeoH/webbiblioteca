@@ -1,8 +1,8 @@
-{% extends "p_base.html" %}
+{% extends "base.html" %}
 
 {% block title %}- {{libro.title}} {% endblock %}
 
-{% block contenido %}
+{% block content %}
 <section class="detalle-libro">
 
 	<div class="row">
@@ -14,10 +14,10 @@
 		<div class="col-sm-6">
 			<div class="row">
 				<p>
-					<span class="titseccion">Autor(es):</span> 
+					<span class="titseccion">Autor(es):</span>
 					<ul>
-						{% for x in autores %}
-							<li><a href="{% url 'authors:detail' x.id %}">{{x}}</a></li>
+						{% for autor in libro.authors.all %}
+							<li><a href="#">{{autor}}</a></li>
 						{% endfor %}
 					</ul>
 				</p>
@@ -32,15 +32,15 @@
 		<div class="col-sm-6">
 			<div class="row">
 				<p>
-					<span class="titseccion">Tema(s):</span> 
+					<span class="titseccion">Tema(s):</span>
 					<ul>
-						{% for x in temas %}
-							<li>{{x}}</li>
+						{% for tema in libro.theme.all %}
+							<li>{{tema}}</li>
 						{% endfor %}
 					</ul>
 				</p>
 				<p>
-					<span class="titseccion">Resumen:</span> 
+					<span class="titseccion">Resumen:</span>
 					<p>
 						{{libro.resume}}
 					</p>
@@ -49,5 +49,5 @@
 		</div>
 	</div>
 </section>
-<a href="{% url 'books:home' %}" class="btn btn-primary">Volver</a>
+<a href="{% url 'books:booklist' %}" class="btn btn-primary">Volver</a>
 {% endblock %}

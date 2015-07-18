@@ -1,6 +1,5 @@
-Django==1.6.2
-Pillow==2.4.0
-South==0.8.4
+Django==1.8.3
+Pillow==2.9.0
 argparse==1.2.1
 boto==2.27.0
 dj-database-url==0.2.2

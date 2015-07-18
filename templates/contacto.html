@@ -1,8 +1,8 @@
-{% extends "p_base.html" %}
+{% extends "base.html" %}
 
 {% block title %}- Contacto {% endblock %}
 
-{% block contenido %} 
+{% block content %}
 
 
 {% if errors %}
@@ -24,7 +24,7 @@
 		<span>Tu email:</span>
 		<input type="email" name="email" class="Form-input">
 	</label>
-	
+
 	<label for="mensaje" class="Form-label">
 		<span>Mensaje:</span>
 		<textarea name="mensaje" class="Form-textarea"></textarea>
