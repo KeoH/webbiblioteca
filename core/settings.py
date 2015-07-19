@@ -9,6 +9,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Change 'UTower' and user you machine hostname 
+
 if socket.gethostname() == 'UTower':
     IN_PRODUCCTION = False
 else:
