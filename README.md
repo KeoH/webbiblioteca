@@ -1,10 +1,22 @@
-#Web libreria casera
+# Web libreria casera
 
-##Descripción
+## Descripción
 
-Web programada en Python y HTML/CSS con Django para un
-proyecto casero.
+Aplicación para gestionar la colección de libros de cada usuario
 
-##Autor
+### Backend
 
-Francisco Manzano Magaña - [MznStudio](http://mznstudio.herokuapp.com)
+* Django
+* Django Rest Framework
+* Django Channels
+* GraphQL
+
+### Frontend
+
+* Angular 4
+* WebSockets
+* Bootstrap 4
+
+## Autor
+
+Francisco Manzano Magaña - <keoh77@gmail.com>
