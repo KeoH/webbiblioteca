@@ -1,4 +1,0 @@
-/*
-	Codigo Javascript para el proyecto
-
-*/
