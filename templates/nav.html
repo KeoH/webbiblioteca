@@ -1,42 +1,42 @@
-	{% if user.is_authenticated %}
-	<nav class="Header-nav">
-		<ul class="Header-navList">
-			<li class = "Header-navItem">
-				<a href="{% url 'users:user-dashboard' %}" class = "Header-navLink">Mi dashboard</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="{% url 'books:booklist' %}" class="Header-navLink">Libros</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="#" class="Header-navLink">Autores</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="#" class="Header-navLink">Temas</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="#" class="Header-navLink">Contacto</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="{% url 'users:logout' %}" class="Header-navLink">Salir</a>
-			</li>
-			<li class="Header-navItem">
-				<a href="#" class="Header-navLink">
-					<figure class="Header-userImageContainer noMovil">
-						<img src="{{ user.kuser.photo.url }}" alt="avatar" class="Header-userImage">
-					</figure>
-					<span class="Header-userName">@{{user.username}}</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
+ {% if user.is_authenticated %}
+<nav class="Header-nav">
+	<ul class="Header-navList">
+		<li class="Header-navItem">
+			<a href="" class="Header-navLink">Mi dashboard</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="" class="Header-navLink">Libros</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="#" class="Header-navLink">Autores</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="#" class="Header-navLink">Temas</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="#" class="Header-navLink">Contacto</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="" class="Header-navLink">Salir</a>
+		</li>
+		<li class="Header-navItem">
+			<a href="#" class="Header-navLink">
+				<figure class="Header-userImageContainer noMovil">
+					<img src="" alt="avatar" class="Header-userImage">
+				</figure>
+				<span class="Header-userName">@{{user.username}}</span>
+			</a>
+		</li>
+	</ul>
+</nav>
 
-		{% else %}
-		<nav class = "Header-nav">
-			<ul class = "Header-navList">
-				<li class = "Header-navItem">
-			  	<a href="{% url 'users:login' %}" class = "Header-navLink">Login</a>
-				</li>
-			</ul>
-		</nav>
+{% else %}
+<nav class="Header-nav">
+	<ul class="Header-navList">
+		<li class="Header-navItem">
+			<a href="" class="Header-navLink">Login</a>
+		</li>
+	</ul>
+</nav>
 
-	{% endif %}
+{% endif %}

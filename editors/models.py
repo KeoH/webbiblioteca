@@ -5,10 +5,10 @@ class Editor(models.Model):
 	website = models.URLField(blank=True)
 	logo = models.ImageField(upload_to="editorLogo/", blank=True)
 	
-	def __unicode__(self):
+	def __str__(self):
 		return self.name
 		
 	class Meta:
 		ordering = ['name']
-		verbose_name=u'Editorial'
-		verbose_name_plural=u'Editoriales'
+		verbose_name='Editorial'
+		verbose_name_plural='Editoriales'

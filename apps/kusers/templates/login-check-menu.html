@@ -1,7 +1,0 @@
-{% if user.is_authenticated %}
- Autenticado
-{% else %}
-<p>
-  <a href="{% url 'users:user-login' %}">Login</a>
-</p>
-{% endif %}
